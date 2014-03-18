@@ -1,5 +1,6 @@
 //Made by Shaheel
-//Version 1.0
+//Version 1.0.1
+//Github https://github.com/shaheel/Rust/blob/master/Magma/MinimalSettings.js
 
 
 // data management class
@@ -88,13 +89,30 @@ function On_PlayerConnected(Player)
 	var grass_data = MSData.GetDataForPlayer(Player, "grass");
 	var banner_data = MSData.GetDataForPlayer(Player, "banner");
 	var nudity_data = MSData.GetDataForPlayer(Player, "nudity");
-	
-	if( grass_data !== null )
-		performCommandWithValue(Player, "grass", grass_data);
-	if( banner_data !== null )
-		performCommandWithValue(Player, "banner", grass_data);
-	if( nudity_data !== null )
-		performCommandWithValue(Player, "nudity", grass_data);	
+
+	// set default values and save them
+	if( grass_data === null)
+	{
+		grass_data = false;
+		MSData.SetDataForPlayer(Player, "grass", grass_data);
+	}
+
+	if( banner_data === null )
+	{
+		banner_data = false;
+		MSData.SetDataForPlayer(Player, "banner", banner_data);
+	}
+
+	if( nudity_data === null )
+	{
+		nudity_data = false;
+		MSData.SetDataForPlayer(Player, "nudity", nudity_data);
+	}
+
+	// perform default commands
+	performCommandWithValue(Player, "grass", grass_data);
+	performCommandWithValue(Player, "banner", banner_data);
+	performCommandWithValue(Player, "nudity", nudity_data);	
 }
 
 // supported commands
